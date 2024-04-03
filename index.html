@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 180px;
+    width: 250px;
+    background-color: rgb(189, 196, 196);
+}
+img{
+    margin: 5px;
+}
+button{
+    margin-top: 5px;
+}
+#verify{
+    margin-top: 10px;
+}
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="check">
+    <label>I am not a robot</label>
+    <p>Selet image of dog</p>
+    <div id="container">
+        <img src="image1.jpg" alt="Image 1" height="70px" width="70px" class="tile img1">
+        <img src="image2.jpg" alt="Image 2" height="70px" width="70px" class="tile img2">
+        <img src="image3.jpg" alt="Image 3" height="70px" width="70px" class="tile img3">
+        <img src="image4.jpg" alt="Image 4" height="70px" width="70px" class="tile img4">
+        <img src="image5.jpg" alt="Image 5" height="70px" width="70px" class="tile img5">
+        <img src="image6.jpg" alt="Image 5" height="70px" width="70px" class="tile img5"> 
+      </div>
+      <button onclick="selected()">Verify</button>
+      <div id="verify"></div>
+      <script>
+        let showimg = [
+  {
+    image: "https://picsum.photos/id/237/200/300",
+    id: 0,
+  },
+  { image: "https://picsum.photos/seed/picsum/200/300", id: 1 },
+  { image: "https://picsum.photos/200/300?grayscale", id: 2 },
+  { image: "https://picsum.photos/200/300/", id: 3 },
+  {
+    image: "https://picsum.photos/200/300.jpg",
+    id: 4,
+  },
+];
+let imgSelc;
+
+let msg = "";
+let checkbox = document.getElementById("check");
+
+showimg.forEach((value, index) => {
+  msg =
+    msg +
+    `
+    <div>
+    <img onclick="sendIdFun(${index})"  src=${value.image} alt="Image 1" height="70px" width="70px" class="tile img1">
+    </div>
+    
+           `;
+});
+container.innerHTML = msg;
+
+function selected() {
+    if(checkbox.checked){
+        if (imgSelc == showimg[0].id ) {
+            console.log(imgSelc);
+            verify.innerHTML = "You have loggedIn";
+          } else {
+            verify.innerHTML = "different image is selcted";
+          }
+    }
+    else{
+        verify.innerHTML = "checkBox is not selected";
+    }
+  
+}
+function sendIdFun(id) {
+  imgSelc = id;
+}
+
+      </script>
+</body>
+</html>
